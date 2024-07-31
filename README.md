@@ -152,7 +152,7 @@ oc get route el-sample-app-event-listener-dev
 
 1. テストレポートの URL を確認し、ブラウザでアクセスします。
 ```bash
-oc get route test-reports -n pipeline-dev
+oc get route test-reports
 ```
 2. sample-app の単体テストレポート: <テストレポートの URL>/sample-app/unit-test
 3. sample-app の結合テストレポート: <テストレポートの URL>/sample-app/integration-test
