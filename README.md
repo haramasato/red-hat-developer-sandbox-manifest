@@ -3,7 +3,7 @@
 ## 1. Red Hat Developer Sandbox の払い出し
 
 1. [Red Hat Developer Sandbox](https://developers.redhat.com/developer-sandbox)にアクセスします。
-2. 「Get Started for Free」をクリックします。
+2. 「Start your sandbox for Free」をクリックします。
 3. Red Hat アカウントを作成またはログインします。
 4. [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift/sandbox)が開かれます。
 5. Available services の下に、Red Hat OpenShift があり、Launch ボタンをクリックします。
