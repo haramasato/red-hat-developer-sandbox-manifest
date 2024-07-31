@@ -20,7 +20,7 @@
 1. GitHub の右上にあるプロフィールアイコンをクリックし、「Settings」を選択します。
 2. 左側のメニューの一番下にある「Developer settings」を選択し、「Personal access tokens」 -> 「Fine-grained tokens」をクリックします。
 3. 「Generate new token」をクリックします。
-4. 「Repository access」で トークンで操作するリポジトリのみを選択します。
+4. 「Repository access」で マニフェストのリポジトリのみを選択します。
 5. 「Repository permissions」をクリックして、「Contents」の権限を「Read and write」にします。
 6. 「Generate token」をクリックしてトークンを生成します。
 7. トークンをコピーし、安全な場所に保存します。(二度と表示されません)
@@ -65,7 +65,7 @@ oc create secret generic git-credentials \
 oc apply -k overlays/dev
 ```
 
-## 9. Event Listener の URL 設定
+## 9. Event Listener の URL 設定 (gitops-pipeline)
 
 1. 以下のコマンドを実行して、Event Listener の URL を取得します。
 
@@ -76,20 +76,23 @@ oc get route el-gitops-event-listener-dev
 2. HOST/PORT の列に` el-gitops-event-listener-dev-jiadchen-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
 3. 取得した URL を Github のマニフェストのリポジトリの Webhook に設定します。
 
-## 10. Webhook の設定
+## 10. Webhook の設定 (red-hat-developer-sandbox-manifest)
 
 1. リポジトリの画面を開いて、「Settings」をクリックします。
 2. 左のメニューで「Webhooks」を選択します。
 3. 「Add webhook」をクリックします。
-4. 「Payload URL」に `<取得した URL>`を入力します。
+4. 「Payload URL」に http://`<取得した URL>`を入力します。
 5. 「Content type」を 「application/json」に設定します。
 6. 「Add webhook」をクリックします。
+7. 「Webhook」の「Recent Deliveries」で ping の履歴が表示されます。
+8. GitOps Pipeline が動作しますが、namespace の変更はまだ Push されていないため、失敗します。気にしないでください。
 
 ## 11. マニフェストリポジトリへのプッシュ
 
-1. マニフェストのリポジトリに変更を加え、プッシュします。
+1. 先ほど Namespace を変更するコミットをマニフェストのリポジトリにプッシュします。
 2. Webhook が起動し、GitOps パイプラインが動作してすべてのマニフェストが適用されます。
 3. パイプラインの実行状況は OpenShift Web Console で確認できます。「Pipelines」をクリックします。
+4. 今度は GitOps pipeline の成功を確認します。
 
 ## 12. SonarQube の設定
 
@@ -97,7 +100,7 @@ oc get route el-gitops-event-listener-dev
 ```bash
 oc get route sonarqube
 ```
-2. 上記で取得した URL をブラウザで開きます。
+2. https://<上記で取得した URL> をブラウザで開きます。「SonarQube is starting」画表示されているので、しばらく待ちます。
 3. username:admin, password:admin でログインします。初期パスワードを任意のパスワードに変更します。
 4. 右上に「Administration」をクリックし、「My Account」をクリックします。
 5. 「Security」をクリックし、「Generate Tokens」の下に「Name」を入力して、「Type」を Global Analysis Token に設定して、「Generate」をクリックします。
@@ -116,9 +119,30 @@ oc get route sonarqube
 4. `red-hat-developer-sandbox-manifest/apps/overlays/dev/patch/sample-view/deployment.yaml`
    1. API_BASE_URL の value に`oc get route dev-sample-app`で取得した URL を設定します。
 
-## 13. デモアプリのデプロイ
+## 14. Event Listener の URL 設定 (apps-pipeline)
 
-1. 上記変更を Git にコミットします。
+1. 以下のコマンドを実行して、Event Listener の URL を取得します。
+
+```bash
+oc get route el-sample-app-event-listener-dev
+```
+
+2. HOST/PORT の列に` el-sample-app-event-listener-dev-jiadchen-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
+3. 取得した URL を Github の apps のリポジトリの Webhook に設定します。
+
+## 15. WebHook の設定 (red-hat-developer-sandbox-apps)
+
+1. リポジトリの画面を開いて、「Settings」をクリックします。
+2. 左のメニューで「Webhooks」を選択します。
+3. 「Add webhook」をクリックします。
+4. 「Payload URL」に http://`<取得した URL>`を入力します。
+5. 「Content type」を 「application/json」に設定します。
+6. 「Add webhook」をクリックします。
+7. Apps Pipeline が動作しますが、更新が足りないため、失敗します。気にしないでください。
+
+## 16. デモアプリのデプロイ
+
+1. 7と13での変更を Git にコミットします。
 2. red-hat-developer-sandbox-manifest を Git Push します。
 3. GitOps パイプラインが実行され、成功を確認します。
 4. red-hat-developer-sandbox-apps を Git Push します。
