@@ -157,7 +157,7 @@ spec:
         git remote set-url origin $GITOPS_REPO_URL
 
         echo "Updating patch's deployment.yaml..."
-        sed -i 's|$(params.IMAGE_REGISTRY)/$(params.NAMESPACE)/$(params.APP_NAME):[^|]*|$(params.IMAGE_REGISTRY)/$(params.NAMESPACE)/$(params.APP_NAME):$(params.GIT_REVISION)|g' patch/$(params.APP_NAME)/deployment.yaml
+        sed -i "s|$(params.IMAGE_REGISTRY)/$(params.NAMESPACE)/$(params.APP_NAME):[^|]*|$(params.IMAGE_REGISTRY)/$(params.NAMESPACE)/$(params.APP_NAME):$(params.GIT_REVISION)|g" patch/$(params.APP_NAME)/deployment.yaml
         git add patch/$(params.APP_NAME)/deployment.yaml
         git commit -m "Update $(params.APP_NAME) image tag to $(params.GIT_REVISION)"
 
