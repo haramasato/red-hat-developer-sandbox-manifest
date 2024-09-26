@@ -6,7 +6,7 @@ metadata:
     app: test-reports
   annotations:
     image.openshift.io/triggers: >-
-      [{"from":{"kind":"ImageStreamTag","name":"test-reports:latest","namespace":"jiadchen-dev"},"fieldPath":"spec.template.spec.containers[?(@.name==\"test-reports\")].image"}]
+      [{"from":{"kind":"ImageStreamTag","name":"test-reports:latest","namespace":"crt-default-ini-dev"},"fieldPath":"spec.template.spec.containers[?(@.name==\"test-reports\")].image"}]
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: test-reports
-          image: image-registry.openshift-image-registry.svc:5000/jiadchen-dev/test-reports:latest
+          image: image-registry.openshift-image-registry.svc:5000/crt-default-ini-dev/test-reports:latest
           ports:
             - containerPort: 8080
               protocol: TCP

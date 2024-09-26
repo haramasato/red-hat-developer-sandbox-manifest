@@ -140,9 +140,9 @@ spec:
         #!/bin/sh
         yum install -y git
 
-        USERNAME=$(oc get secret git-credentials -n jiadchen-dev -o jsonpath='{.data.username}' | base64 --decode)
+        USERNAME=$(oc get secret git-credentials -n crt-default-ini-dev -o jsonpath='{.data.username}' | base64 --decode)
         echo username is $USERNAME
-        TOKEN=$(oc get secret git-credentials -n jiadchen-dev -o jsonpath='{.data.token}' | base64 --decode)
+        TOKEN=$(oc get secret git-credentials -n crt-default-ini-dev -o jsonpath='{.data.token}' | base64 --decode)
         echo token is $TOKEN
 
         git config --global user.email "sample-app-pipeline@openshift.com"

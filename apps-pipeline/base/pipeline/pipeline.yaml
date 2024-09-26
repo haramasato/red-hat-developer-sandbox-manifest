@@ -25,7 +25,7 @@ spec:
         - name: pipeline-name
           value: pipeline-sample-app-dev
         - name: namespace
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: current-pipelinerun
           value: $(params.current-pipelinerun)
 
@@ -78,7 +78,7 @@ spec:
         - name: TLSVERIFY
           value: "false"
         - name: IMAGE
-          value: $(params.IMAGE_REGISTRY)/jiadchen-dev/$(params.APP_NAME):$(params.GIT_REVISION)
+          value: $(params.IMAGE_REGISTRY)/crt-default-ini-dev/$(params.APP_NAME):$(params.GIT_REVISION)
 
     - name: update-sample-app-image-tag-in-repo-it
       taskRef:
@@ -90,9 +90,9 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: POD_NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: $(params.APP_NAME)
         - name: GIT_REVISION
@@ -127,9 +127,9 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: POD_NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: $(params.APP_NAME)
         - name: GIT_REVISION
@@ -154,7 +154,7 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: $(params.APP_NAME)
         - name: GIT_REVISION
@@ -206,7 +206,7 @@ spec:
         - name: TLSVERIFY
           value: "false"
         - name: IMAGE
-          value: $(params.IMAGE_REGISTRY)/jiadchen-dev/sample-view:$(params.GIT_REVISION)
+          value: $(params.IMAGE_REGISTRY)/crt-default-ini-dev/sample-view:$(params.GIT_REVISION)
 
     - name: update-sample-view-image-tag-in-repo-it
       taskRef:
@@ -218,9 +218,9 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: POD_NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: sample-view
         - name: GIT_REVISION
@@ -242,9 +242,9 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: POD_NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: sample-view
         - name: GIT_REVISION
@@ -269,7 +269,7 @@ spec:
         - name: IMAGE_REGISTRY
           value: $(params.IMAGE_REGISTRY)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: APP_NAME
           value: sample-view
         - name: GIT_REVISION
@@ -308,7 +308,7 @@ spec:
         - name: TLSVERIFY
           value: "false"
         - name: IMAGE
-          value: $(params.IMAGE_REGISTRY)/jiadchen-dev/test-reports:latest
+          value: $(params.IMAGE_REGISTRY)/crt-default-ini-dev/test-reports:latest
     - name: cleanup-pipelinerun
       taskRef:
         name: cleanup-pipelinerun
@@ -317,7 +317,7 @@ spec:
         - name: pipeline-name
           value: pipeline-sample-app-dev
         - name: namespace
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: limit
           value: "2"
 

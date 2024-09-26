@@ -52,7 +52,7 @@ oc create secret generic git-credentials \
 
 ## 7. Namespace の置換
 
-1. apps と manifest のリポジトリにおいて、`jiadchen-dev` となっているすべての部分を、ご自身の Namespace に置換します。
+1. apps と manifest のリポジトリにおいて、`crt-default-ini-dev` となっているすべての部分を、ご自身の Namespace に置換します。
 2. 変更を Git コミットします。
 
 ## 8. GitOps Pipeline マニフェストの適用
@@ -73,7 +73,7 @@ oc apply -k overlays/dev
 oc get route el-gitops-event-listener-dev
 ```
 
-2. HOST/PORT の列に` el-gitops-event-listener-dev-jiadchen-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
+2. HOST/PORT の列に` el-gitops-event-listener-dev-crt-default-ini-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
 3. 取得した URL を Github のマニフェストのリポジトリの Webhook に設定します。
 
 ## 10. Webhook の設定 (red-hat-developer-sandbox-manifest)
@@ -127,7 +127,7 @@ oc get route sonarqube
 oc get route el-sample-app-event-listener-dev
 ```
 
-2. HOST/PORT の列に` el-sample-app-event-listener-dev-jiadchen-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
+2. HOST/PORT の列に` el-sample-app-event-listener-dev-crt-default-ini-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com`のような URL が表示されます。
 3. 取得した URL を Github の apps のリポジトリの Webhook に設定します。
 
 ## 15. WebHook の設定 (red-hat-developer-sandbox-apps)
@@ -167,8 +167,8 @@ oc get route test-reports
 ## トラブルシューティング
 1. sandbox の制約として pod を 50 個に達していると、pod の作成ができなくなるので、pod の削除が必要です。  
 Completed の状態の Pod を全部削除するコマンド  
-`oc get pods -n jiadchen-dev --field-selector=status.phase=Succeeded -o jsonpath='{.items[*].metadata.name}' | xargs -r oc delete pod -n jiadchen-dev`
+`oc get pods -n crt-default-ini-dev --field-selector=status.phase=Succeeded -o jsonpath='{.items[*].metadata.name}' | xargs -r oc delete pod -n crt-default-ini-dev`
 
 2. pipelineRun がたくさん増えると、pod数の上限に達してしまったり、pvのサイズが40GBを超えたりするため、pipelinerun を削除する必要があります。  
 すべての pipelinerun を削除するコマンド  
-`oc delete pipelinerun --all -n jiadchen-dev`
+`oc delete pipelinerun --all -n crt-default-ini-dev`

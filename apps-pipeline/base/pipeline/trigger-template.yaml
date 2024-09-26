@@ -17,7 +17,7 @@ spec:
       kind: PipelineRun
       metadata:
         name: sample-app-pipeline-run-$(uid)
-        namespace: jiadchen-dev
+        namespace: crt-default-ini-dev
       spec:
         serviceAccountName: pipeline
         pipelineRef:

@@ -18,7 +18,7 @@ spec:
         - name: pipeline-name
           value: pipeline-gitops-dev
         - name: namespace
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: current-pipelinerun
           value: $(params.current-pipelinerun)
     - name: apply-manifest
@@ -30,7 +30,7 @@ spec:
         - name: GIT_REPO_URL
           value: $(params.GIT_REPO_URL)
         - name: NAMESPACE
-          value: jiadchen-dev
+          value: crt-default-ini-dev
 
   finally:
     - name: cleanup-pipelinerun
@@ -41,6 +41,6 @@ spec:
         - name: pipeline-name
           value: pipeline-gitops-dev
         - name: namespace
-          value: jiadchen-dev
+          value: crt-default-ini-dev
         - name: limit
           value: "4"
